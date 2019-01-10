@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+import { BusinessService } from '../business.service';
 
 @Component({
   selector: 'app-biz-add',
@@ -9,7 +10,7 @@ import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 export class BizAddComponent implements OnInit {
 
 	angForm: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private bs: BusinessService) {
   	this.createForm();
   }
 
@@ -19,6 +20,10 @@ export class BizAddComponent implements OnInit {
   		business_name: ['', Validators.required],
   		business_kra_number: ['', Validators.required],
   	})
+  };
+
+  addBusiness(person_name, business_name, business_kra_number){
+    this.bs.addBusiness(person_name, business_name, business_kra_number)
   };
 
   ngOnInit() {
