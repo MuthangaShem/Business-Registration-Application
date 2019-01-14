@@ -19,14 +19,24 @@
           Person Business is required.
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group" >
         <label class="col-md-4">Business GST Number </label>
-        <input type="text" class="form-control" formControlName="business_kra_number" #business_kra_number />
+        <input type="text" type="text" class="form-control" formControlName="business_kra_number" #business_kra_number />
       </div>
       <div *ngIf="angForm.controls['business_kra_number'].invalid && (angForm.controls['business_kra_number'].dirty || angForm.controls['business_kra_number'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['business_kra_number'].errors.required">
           Business KRA Number is required.
         </div>
+        <div *ngIf="angForm.controls['business_kra_number'].errors.pattern">
+          Business KRA Number must be a number.
+        </div>
+        <div *ngIf="angForm.controls['business_kra_number'].errors.minlength">
+          Business KRA Number must be at least 7 digits.
+        </div>
+        <div *ngIf="angForm.controls['business_kra_number'].errors.maxlength">
+          Business KRA Number must be at most 7 digits.
+        </div>
+
       </div>
       <div class="form-group">
         <button type="submit" (click)="addBusiness(person_name.value, business_name.value, business_kra_number.value)" [disabled]="angForm.pristine || angForm.invalid" 

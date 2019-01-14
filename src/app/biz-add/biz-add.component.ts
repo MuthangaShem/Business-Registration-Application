@@ -18,7 +18,12 @@ export class BizAddComponent implements OnInit {
   	this.angForm = this.fb.group({
   		person_name: ['', Validators.required],
   		business_name: ['', Validators.required],
-  		business_kra_number: ['', Validators.required],
+  		business_kra_number: ['', Validators.compose([
+        Validators.minLength(7),
+        Validators.maxLength(7),
+        Validators.pattern(/^-?(0|[0-9]\d*)?$/),
+        Validators.required])],
+        
   	})
   };
 
