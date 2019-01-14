@@ -27,5 +27,13 @@ businessRoutes.route('/').get(function(req, res){
 	});
 });
 
+// define update route
+businessRoutes.route('/update/:id').post(function(req, res){
+  let id = req.params.id;
+  Business.findById(id, function(err, business){
+    res.json(business);
+  });
+});
+
 
 module.exports = businessRoutes;
