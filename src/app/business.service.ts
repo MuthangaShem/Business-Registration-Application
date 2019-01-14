@@ -24,4 +24,8 @@ export class BusinessService {
   getBusinesses(){
     return this.http.get(`${this.uri}`);
   };
+
+  editBusiness(id){
+    return this.http.get(`${this.uri}/edit/${id}`)
+  }
 }
