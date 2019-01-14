@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Business from '../Business.model';
+import { BusinessService } from '../business.service';
 
 @Component({
   selector: 'app-biz-get',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BizGetComponent implements OnInit {
 
-  constructor() { }
+	businesses : Business[];
+
+  constructor(private bs: BusinessService) { }
 
   ngOnInit() {
+  	this.bs.getBusinesses().subscribe((data: Business[]) => {
+        this.businesses = data;
+    });
   }
 
 }

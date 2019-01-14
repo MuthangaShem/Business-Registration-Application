@@ -23,9 +23,7 @@ businessRoutes.route('/').get(function(req, res){
 		if(err){
 			console.log(err);
 		};
-		else{
-			res.json(businesses);
-		};
+		res.json(businesses);		
 	});
 });
 
