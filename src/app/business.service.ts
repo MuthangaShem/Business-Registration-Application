@@ -30,4 +30,17 @@ export class BusinessService {
             .http
             .get(`${this.uri}/edit/${id}`);
           };
+
+  updateBusiness(person_name, business_name, business_kra_number, id) {
+
+    const obj = {
+        person_name: person_name,
+        business_name: business_name,
+        business_kra_number: business_kra_number
+      };
+    this
+      .http
+      .post(`${this.uri}/update/${id}`, obj)
+      .subscribe(res => console.log('Done'));
+  };
 }
