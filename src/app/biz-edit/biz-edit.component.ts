@@ -10,30 +10,32 @@ import { BusinessService } from '../business.service';
 })
 export class BizEditComponent implements OnInit {
 
-	business: any = {};
-	angForm: FormGroup;
+  angForm: FormGroup;
+  business: any = {};
 
   constructor(private route: ActivatedRoute,
-  			  private router: Router,
-  			  private fb: FormBuilder,
-  			  private bs: BusinessService) {
-  			  this.createForm() }
+    private router: Router,
+    private bs: BusinessService,
+    private fb: FormBuilder) {
+      this.createForm();
+     }
 
-  			  createForm(){
-  			  	this.angForm = this.fb.group({
-  			  		person_name: ['', Validators.required],
-  			  		business_name: ['', Validators.required],
-  			  		business_kra_number: ['', Validators.required]
-  			  	});
-  			  };
+  createForm() {
+    this.angForm = this.fb.group({
+        person_name: ['', Validators.required ],
+        business_name: ['', Validators.required ],
+        business_kra_number: ['', Validators.required ]
+      });
+    }
 
 
   ngOnInit() {
-  	this.route.params.subscribe(params => {
-  		this.bs.editBusiness(params['id']).subscribe(res => {
-  			this.business = res;
-  		});
-  	});
+    this.route.params.subscribe(params => {
+      this.bs.editBusiness(params['id']).subscribe(res => {
+        this.business = res;
+      });
+    });
   }
+
 
 }

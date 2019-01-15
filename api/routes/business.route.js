@@ -27,13 +27,12 @@ businessRoutes.route('/').get(function(req, res){
 	});
 });
 
-// define update route
-businessRoutes.route('/update/:id').post(function(req, res){
+// define edit route
+businessRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
-  Business.findById(id, function(err, business){
-    res.json(business);
+  Business.findById(id, function (err, business){
+      res.json(business);
   });
 });
-
 
 module.exports = businessRoutes;
