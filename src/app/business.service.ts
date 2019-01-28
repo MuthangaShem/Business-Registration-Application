@@ -23,7 +23,7 @@ export class BusinessService {
   getBusinesses() {
     return this
            .http
-           .get(``);
+           .get(`/`);
   }
 
   editBusiness(id) {
