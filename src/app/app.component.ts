@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
-import {NavigationCancel, 
-		Event,
-		NavigationEnd,
-		NavigationError,
-		NavigationStart,
-		Router } from '@angular/router';
+import {SlimLoadingBarService} from 'ng2-slim-loading-bar';
+import { NavigationCancel,
+        Event,
+        NavigationEnd,
+        NavigationError,
+        NavigationStart,
+        Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +13,8 @@ import {NavigationCancel,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'MEAN-CRUD';
-
-   constructor(private _loadingBar: SlimLoadingBarService, private _router: Router) {
+  title = 'mean-crud';
+  constructor(private _loadingBar: SlimLoadingBarService, private _router: Router) {
     this._router.events.subscribe((event: Event) => {
       this.navigationInterceptor(event);
     });
@@ -34,5 +33,4 @@ export class AppComponent {
       this._loadingBar.stop();
     }
   }
-
 }

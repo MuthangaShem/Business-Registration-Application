@@ -1,15 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
+
 import { AppComponent } from './app.component';
 import { BizAddComponent } from './biz-add/biz-add.component';
 import { BizGetComponent } from './biz-get/biz-get.component';
 import { BizEditComponent } from './biz-edit/biz-edit.component';
-import { BusinessService } from './business.service'
+
+import { BusinessService } from './business.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,7 @@ import { BusinessService } from './business.service'
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [BusinessService],
-  bootstrap: [AppComponent]
+  providers: [ BusinessService ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

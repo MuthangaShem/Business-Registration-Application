@@ -9,13 +9,21 @@ import { BusinessService } from '../business.service';
 })
 export class BizGetComponent implements OnInit {
 
-	businesses : Business[];
+  businesses: Business[];
 
   constructor(private bs: BusinessService) { }
 
   ngOnInit() {
-  	this.bs.getBusinesses().subscribe((data: Business[]) => {
+    this.bs
+      .getBusinesses()
+      .subscribe((data: Business[]) => {
         this.businesses = data;
+    });
+  }
+
+  deleteBusiness(id) {
+    this.bs.deleteBusiness(id).subscribe(res => {
+      console.log('Deleted');
     });
   }
 

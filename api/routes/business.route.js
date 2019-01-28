@@ -2,10 +2,10 @@ const express = require('express');
 const app = express();
 const businessRoutes = express.Router();
 
-// require business model
+// Require Business model in our routes module
 let Business = require('../models/Business');
 
-// define store route
+// Defined store route
 businessRoutes.route('/add').post(function (req, res) {
   let business = new Business(req.body);
   business.save()
@@ -17,17 +17,19 @@ businessRoutes.route('/add').post(function (req, res) {
     });
 });
 
-// define get data(index or listings) route
-businessRoutes.route('/').get(function(req, res){
-	Business.find(function(err, businesses){
-		if(err){
-			console.log(err);
-		};
-		res.json(businesses);		
-	});
+// Defined get data(index or listing) route
+businessRoutes.route('/').get(function (req, res) {
+    Business.find(function (err, businesses){
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.json(businesses);
+    }
+  });
 });
 
-// define edit route
+// Defined edit route
 businessRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
   Business.findById(id, function (err, business){
@@ -53,6 +55,14 @@ businessRoutes.route('/update/:id').post(function (req, res) {
       });
     }
   });
+});
+
+// Defined delete | remove | destroy route
+businessRoutes.route('/delete/:id').get(function (req, res) {
+    Business.findByIdAndRemove({_id: req.params.id}, function(err, business){
+        if(err) res.json(err);
+        else res.json('Successfully removed');
+    });
 });
 
 module.exports = businessRoutes;
