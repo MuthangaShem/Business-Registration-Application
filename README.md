@@ -6,7 +6,7 @@ A MEAN stack application(MongoDb, Express JS, Angular 7, Node JS). Performs CRUD
 
 Clone the repo and run `npm install` to install node modules and/or `npm install --dev` to install devDependencies. Then run `node server` or `nodemon server` to start the server.
 
-Then move in to the client folder and run the following commands one after the other
+Then move in to the client folder and run the following commands one after the other  
 `rm -rf node_modules dist tmp`  
 `npm install --save-dev angular-cli@latest`  
 `npm install`  
