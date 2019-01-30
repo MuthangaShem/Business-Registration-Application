@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { BusinessService } from '../business.service';
+import Business from '../Business.model';
+
 
 @Component({
   selector: 'app-biz-edit',
@@ -12,6 +14,7 @@ export class BizEditComponent implements OnInit {
 
   angForm: FormGroup;
   business: any = {};
+  businesses: Business[];
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -24,7 +27,11 @@ export class BizEditComponent implements OnInit {
     this.angForm = this.fb.group({
         person_name: ['', Validators.required ],
         business_name: ['', Validators.required ],
-        business_kra_number: ['', Validators.required ]
+        business_kra_number: ['', Validators.compose([
+        Validators.minLength(7),
+        Validators.maxLength(7),
+        Validators.pattern(/^-?(0|[0-9]\d*)?$/),
+        Validators.required])]
       });
     }
 
@@ -41,6 +48,11 @@ export class BizEditComponent implements OnInit {
    this.route.params.subscribe(params => {
       this.bs.updateBusiness(person_name, business_name, business_kra_number, params['id']);
       this.router.navigate(['']);
+      this.bs
+      .getBusinesses()
+      .subscribe((data: Business[]) => {
+        this.businesses = data;
+    });
    });
 }
 }

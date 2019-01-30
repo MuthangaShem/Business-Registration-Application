@@ -25,8 +25,18 @@
       </div>
       <div *ngIf="angForm.controls['business_kra_number'].invalid && (angForm.controls['business_kra_number'].dirty || angForm.controls['business_kra_number'].touched)" class="alert alert-danger">
         <div *ngIf="angForm.controls['business_kra_number'].errors.required">
-          Business kra Number is required.
+          Business KRA Number is required.
         </div>
+        <div *ngIf="angForm.controls['business_kra_number'].errors.pattern">
+          Business KRA Number must be a number.
+        </div>
+        <div *ngIf="angForm.controls['business_kra_number'].errors.minlength">
+          Business KRA Number must be at least 7 digits.
+        </div>
+        <div *ngIf="angForm.controls['business_kra_number'].errors.maxlength">
+          Business KRA Number must be at most 7 digits.
+        </div>
+
       </div>
       <div class="form-group">
         <button (click)="addBusiness(person_name.value, business_name.value, business_kra_number.value)"

@@ -23,13 +23,13 @@ export class BusinessService {
   getBusinesses() {
     return this
            .http
-           .get(``);
+           .get(`${this.uri}`);
   }
 
   editBusiness(id) {
     return this
             .http
-            .get(`edit/${id}`);
+            .get(`${this.uri}/edit/${id}`);
     }
 
   updateBusiness(person_name, business_name, business_kra_number, id) {
@@ -41,13 +41,13 @@ export class BusinessService {
       };
     this
       .http
-      .post(`update/${id}`, obj)
+      .post(`${this.uri}/update/${id}`, obj)
       .subscribe(res => console.log('Done'));
   }
 
  deleteBusiness(id) {
     return this
               .http
-              .get(`delete/${id}`);
+              .get(`${this.uri}/delete/${id}`);
   }
 }
