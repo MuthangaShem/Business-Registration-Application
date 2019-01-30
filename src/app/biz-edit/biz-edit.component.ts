@@ -40,7 +40,7 @@ export class BizEditComponent implements OnInit {
   updateBusiness(person_name, business_name, business_kra_number) {
    this.route.params.subscribe(params => {
       this.bs.updateBusiness(person_name, business_name, business_kra_number, params['id']);
-      this.router.navigate(['business']);
+      this.router.navigate(['']);
    });
 }
 }

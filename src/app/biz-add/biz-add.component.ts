@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { BusinessService } from '../business.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-biz-add',
@@ -10,8 +12,9 @@ import { BusinessService } from '../business.service';
 export class BizAddComponent implements OnInit {
 
   angForm: FormGroup;
-  constructor(private fb: FormBuilder, private bs: BusinessService) {
-    this.createForm();
+  constructor(private fb: FormBuilder, private bs: BusinessService,private route: ActivatedRoute,
+    private router: Router) {
+    this.createForm(); 
   }
 
   createForm(){
@@ -29,9 +32,12 @@ export class BizAddComponent implements OnInit {
 
   addBusiness(person_name, busines_name, business_kra_number) {
     this.bs.addBusiness(person_name, busines_name, business_kra_number);
+    if(this.angForm.valid){
+      console.log("Form Submitted!");
+      this.angForm.reset();
+    }
   }
 
   ngOnInit() {
   }
-
 }

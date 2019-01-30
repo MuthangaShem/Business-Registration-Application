@@ -10,11 +10,15 @@ const routes: Routes = [
     component: BizAddComponent
   },
   {
-    path: 'business/edit/:id',
+    path: 'edit/:id',
     component: BizEditComponent
   },
   {
     path: 'business',
+    component: BizGetComponent
+  },
+  {
+    path: '',
     component: BizGetComponent
   }
 ];

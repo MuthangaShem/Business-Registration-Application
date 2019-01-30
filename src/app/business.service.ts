@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BusinessService {
 
-  uri = 'http://localhost:4000/business';
+  uri = 'http://localhost:8080/business';
 
   constructor(private http: HttpClient) { }
 
@@ -16,20 +16,20 @@ export class BusinessService {
       business_name: business_name,
       business_kra_number: business_kra_number
     };
-    this.http.post(`add`, obj)
+    this.http.post(`${this.uri}/add`, obj)
         .subscribe(res => console.log('Done'));
   }
 
   getBusinesses() {
     return this
            .http
-           .get(`/`);
+           .get(`${this.uri}`);
   }
 
   editBusiness(id) {
     return this
             .http
-            .get(`edit/${id}`);
+            .get(`${this.uri}/edit/${id}`);
     }
 
   updateBusiness(person_name, business_name, business_kra_number, id) {
@@ -41,13 +41,13 @@ export class BusinessService {
       };
     this
       .http
-      .post(`update/${id}`, obj)
+      .post(`${this.uri}/update/${id}`, obj)
       .subscribe(res => console.log('Done'));
   }
 
  deleteBusiness(id) {
     return this
               .http
-              .get(`delete/${id}`);
+              .get(`${this.uri}/delete/${id}`);
   }
 }

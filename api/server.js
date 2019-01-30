@@ -13,6 +13,9 @@ mongoose.connect(config.DB, {useNewUrlParser: true }).then(() => console.log('Mo
   .catch(err => console.log(err));
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'dist')));
+
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/business', businessRoute);

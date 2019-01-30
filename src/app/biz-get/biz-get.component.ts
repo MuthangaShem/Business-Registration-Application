@@ -23,7 +23,12 @@ export class BizGetComponent implements OnInit {
 
   deleteBusiness(id) {
     this.bs.deleteBusiness(id).subscribe(res => {
-      console.log('Deleted');
+      console.log('Deleted!');
+      this.bs
+      .getBusinesses()
+      .subscribe((data: Business[]) => {
+        this.businesses = data;
+    });
     });
   }
 
