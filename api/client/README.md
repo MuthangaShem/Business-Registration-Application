@@ -1,10 +1,21 @@
-# mean-crud
+# Business-Registration-Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2.
+A MEAN stack application(MongoDb, Express JS, Angular 7, Node JS). Performs CRUD task to register businesses.
 
-## Development server
+## Running it on a local machine
+
+Clone the repo and run `npm install` to install node modules and/or `npm install --dev` to install devDependencies. Then run `node server` or `nodemon server` to start the server.
+
+Then move in to the client folder and run the following commands one after the other
+`rm -rf node_modules dist tmp
+npm install --save-dev angular-cli@latest
+npm install
+ng init`
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## bugs
+AJAx not working. One has to reload the home page to see the changes. To be fixed soon
 
 ## Code scaffolding
 
