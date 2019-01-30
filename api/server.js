@@ -14,6 +14,11 @@ mongoose.connect(config.DB, {useNewUrlParser: true }).then(() => console.log('Mo
 
 const app = express();
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/dist/index.html'));
+});
+
+
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(bodyParser.json());
