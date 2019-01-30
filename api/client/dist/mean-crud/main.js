@@ -254,7 +254,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n  <div class=\"card-body\">\r\n    <form [formGroup]=\"angForm\" novalidate>\r\n      <div class=\"form-group\">\r\n        <label class=\"col-md-4\">Person Name</label>\r\n        <input type=\"text\" class=\"form-control\" formControlName=\"person_name\" #person_name/>\r\n      </div>\r\n      <div *ngIf=\"angForm.controls['person_name'].invalid && (angForm.controls['person_name'].dirty || angForm.controls['person_name'].touched)\" class=\"alert alert-danger\">\r\n        <div *ngIf=\"angForm.controls['person_name'].errors.required\">\r\n          Person Name is required.\r\n        </div>\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label class=\"col-md-4\">Business Name </label>\r\n        <input type=\"text\" class=\"form-control\" formControlName=\"business_name\" #business_name />\r\n      </div>\r\n      <div *ngIf=\"angForm.controls['business_name'].invalid && (angForm.controls['business_name'].dirty || angForm.controls['business_name'].touched)\" class=\"alert alert-danger\">\r\n        <div *ngIf=\"angForm.controls['business_name'].errors.required\">\r\n          Person Business is required.\r\n        </div>\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label class=\"col-md-4\">Business kra Number </label>\r\n        <input type=\"text\" class=\"form-control\" formControlName=\"business_kra_number\" #business_kra_number />\r\n      </div>\r\n      <div *ngIf=\"angForm.controls['business_kra_number'].invalid && (angForm.controls['business_kra_number'].dirty || angForm.controls['business_kra_number'].touched)\" class=\"alert alert-danger\">\r\n        <div *ngIf=\"angForm.controls['business_kra_number'].errors.required\">\r\n          Business kra Number is required.\r\n        </div>\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <button (click)=\"addBusiness(person_name.value, business_name.value, business_kra_number.value)\"\r\n        [disabled]=\"angForm.pristine || angForm.invalid\"\r\n        routerLink=\"\" routerLinkActive=\"active\"\r\n        class=\"btn btn-primary\" type=\"button\">Add Business</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n</div>"
+module.exports = "<div class=\"card\">\r\n  <div class=\"card-body\">\r\n    <form [formGroup]=\"angForm\" novalidate>\r\n      <div class=\"form-group\">\r\n        <label class=\"col-md-4\">Person Name</label>\r\n        <input type=\"text\" class=\"form-control\" formControlName=\"person_name\" #person_name/>\r\n      </div>\r\n      <div *ngIf=\"angForm.controls['person_name'].invalid && (angForm.controls['person_name'].dirty || angForm.controls['person_name'].touched)\" class=\"alert alert-danger\">\r\n        <div *ngIf=\"angForm.controls['person_name'].errors.required\">\r\n          Person Name is required.\r\n        </div>\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label class=\"col-md-4\">Business Name </label>\r\n        <input type=\"text\" class=\"form-control\" formControlName=\"business_name\" #business_name />\r\n      </div>\r\n      <div *ngIf=\"angForm.controls['business_name'].invalid && (angForm.controls['business_name'].dirty || angForm.controls['business_name'].touched)\" class=\"alert alert-danger\">\r\n        <div *ngIf=\"angForm.controls['business_name'].errors.required\">\r\n          Person Business is required.\r\n        </div>\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label class=\"col-md-4\">Business kra Number </label>\r\n        <input type=\"text\" class=\"form-control\" formControlName=\"business_kra_number\" #business_kra_number />\r\n      </div>\r\n      <div *ngIf=\"angForm.controls['business_kra_number'].invalid && (angForm.controls['business_kra_number'].dirty || angForm.controls['business_kra_number'].touched)\" class=\"alert alert-danger\">\r\n        <div *ngIf=\"angForm.controls['business_kra_number'].errors.required\">\r\n          Business KRA Number is required.\r\n        </div>\r\n        <div *ngIf=\"angForm.controls['business_kra_number'].errors.pattern\">\r\n          Business KRA Number must be a number.\r\n        </div>\r\n        <div *ngIf=\"angForm.controls['business_kra_number'].errors.minlength\">\r\n          Business KRA Number must be at least 7 digits.\r\n        </div>\r\n        <div *ngIf=\"angForm.controls['business_kra_number'].errors.maxlength\">\r\n          Business KRA Number must be at most 7 digits.\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <button (click)=\"addBusiness(person_name.value, business_name.value, business_kra_number.value)\"\r\n        [disabled]=\"angForm.pristine || angForm.invalid\"\r\n        routerLink=\"\" routerLinkActive=\"active\"\r\n        class=\"btn btn-primary\" type=\"button\">Add Business</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -393,7 +393,12 @@ var BizEditComponent = /** @class */ (function () {
         this.angForm = this.fb.group({
             person_name: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
             business_name: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            business_kra_number: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+            business_kra_number: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].compose([
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(7),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(7),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern(/^-?(0|[0-9]\d*)?$/),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required
+                ])]
         });
     };
     BizEditComponent.prototype.ngOnInit = function () {
@@ -409,6 +414,11 @@ var BizEditComponent = /** @class */ (function () {
         this.route.params.subscribe(function (params) {
             _this.bs.updateBusiness(person_name, business_name, business_kra_number, params['id']);
             _this.router.navigate(['']);
+            _this.bs
+                .getBusinesses()
+                .subscribe(function (data) {
+                _this.businesses = data;
+            });
         });
     };
     BizEditComponent = __decorate([
@@ -436,7 +446,7 @@ var BizEditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Jpei1nZXQvYml6LWdldC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = ".header{\r\n\tfont-size: 20px;\r\n\tfont-weight: bolder;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYml6LWdldC9iaXotZ2V0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Q0FDQyxlQUFlO0NBQ2YsbUJBQW1CO0FBQ3BCIiwiZmlsZSI6InNyYy9hcHAvYml6LWdldC9iaXotZ2V0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaGVhZGVye1xyXG5cdGZvbnQtc2l6ZTogMjBweDtcclxuXHRmb250LXdlaWdodDogYm9sZGVyO1xyXG59Il19 */"
 
 /***/ }),
 
@@ -447,7 +457,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<table class=\"table table-hover\">\r\n  <thead>\r\n  <tr>\r\n      <td>Person Name</td>\r\n      <td>Business Name</td>\r\n      <td>GST Number</td>\r\n      <td colspan=\"2\">Actions</td>\r\n  </tr>\r\n  </thead>\r\n\r\n  <tbody>\r\n      <tr *ngFor=\"let business of businesses\">\r\n          <td>{{ business.person_name }}</td>\r\n          <td>{{ business.business_name }}</td>\r\n          <td>{{ business.business_kra_number }}</td>\r\n          <td><a [routerLink]=\"['edit', business._id]\" class=\"btn btn-primary\">Edit</a></td>\r\n          <td><a (click) = \"deleteBusiness(business._id)\" class=\"btn btn-danger\">Delete</a></td>\r\n      </tr>\r\n  </tbody>\r\n</table>"
+module.exports = "<table class=\"table table-hover\">\r\n  <thead >\r\n  <tr>\r\n      <td class=\"header\">Person Name</td>\r\n      <td class=\"header\">Business Name</td>\r\n      <td class=\"header\">GST Number</td>\r\n      <td class=\"header\" colspan=\"2\">Actions</td>\r\n  </tr>\r\n  </thead>\r\n\r\n  <tbody>\r\n      <tr *ngFor=\"let business of businesses\">\r\n          <td>{{ business.person_name }}</td>\r\n          <td>{{ business.business_name }}</td>\r\n          <td>{{ business.business_kra_number }}</td>\r\n          <td><a [routerLink]=\"['edit', business._id]\" class=\"btn btn-primary\">Edit</a></td>\r\n          <td><a (click) = \"deleteBusiness(business._id)\" class=\"btn btn-danger\">Delete</a></td>\r\n      </tr>\r\n  </tbody>\r\n</table>"
 
 /***/ }),
 
